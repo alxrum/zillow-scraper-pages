@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Zillow Scraper is installed</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6.5' fill='%23e8a33b'/%3E%3Cpath d='M4.8 11.2 12 5.4l7.2 5.8' fill='none' stroke='%232b2723' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 10.3v6.4m-2.7-2.6L12 16.8l2.7-2.7' fill='none' stroke='%232b2723' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M6.6 19.2h10.8' fill='none' stroke='%232b2723' stroke-width='2.1' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="328e350f-b770-4529-9500-92b514123a6c"></script>
+<style>
+  :root { --bg: #1b1815; --card: #24201c; --line: #3a342d; --fg: #f3ede4; --muted: #b6ab9c; --accent: #e8a33b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 "Instrument Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .shell { max-width: 780px; margin: 0 auto; padding: 24px 20px 56px; }
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .mark { width: 32px; height: 32px; flex: none; }
+  .brand { font-weight: 600; font-size: 18px; }
+  h1 { font-size: 30px; line-height: 1.15; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .lead { color: var(--muted); font-size: 17px; margin: 0 0 22px; }
+  .ok { display: inline-flex; align-items: center; gap: 8px; color: #8fd4a4; font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 24px; }
+  .step h2 { display: flex; gap: 12px; align-items: center; font-size: 18px; line-height: 1.3; margin: 0 0 10px; letter-spacing: -0.01em; }
+  .step h2.pair { margin-bottom: 6px; }
+  .num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #2b2723; display: grid; place-items: center; font-size: 15px; font-weight: 700; }
+  .shot { display: block; width: 100%; max-width: 640px; height: auto; border-radius: 16px; }
+  .after { margin-top: 28px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); color: var(--muted); }
+  .after b { color: var(--fg); }
+  .after p { margin: 0; }
+  .after p + p { margin-top: 10px; }
+  footer { margin-top: 56px; color: var(--muted); font-size: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  @media (max-width: 560px) { h1 { font-size: 26px; } .step h2 { font-size: 17px; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header>
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6.5" fill="#e8a33b"/><path d="M4.8 11.2 12 5.4l7.2 5.8" fill="none" stroke="#2b2723" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10.3v6.4m-2.7-2.6L12 16.8l2.7-2.7" fill="none" stroke="#2b2723" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.6 19.2h10.8" fill="none" stroke="#2b2723" stroke-width="2.1" stroke-linecap="round"/></svg>
+    <span class="brand">Zillow Scraper</span>
+  </header>
+
+  <div class="ok">✓ Installed</div>
+  <h1>Zillow Scraper is ready</h1>
+  <p class="lead">Pin it to your toolbar so it's always one click away.</p>
+
+  <ol class="steps">
+    <li class="step">
+      <h2 class="pair"><span class="num">1</span>Click the puzzle icon in the top-right corner of Chrome</h2>
+      <h2><span class="num">2</span>Find Zillow Scraper and click the pin</h2>
+      <img class="shot" src="steps-1-2.png" width="640" height="345" alt="The puzzle icon in the Chrome toolbar, and the pin button next to Zillow Scraper in the extensions menu">
+    </li>
+    <li class="step">
+      <h2><span class="num">3</span>Click the Zillow Scraper icon to get started</h2>
+      <img class="shot" src="step-3.png" width="640" height="270" alt="The Zillow Scraper icon pinned to the Chrome toolbar">
+    </li>
+  </ol>
+
+  <div class="after">
+    <p><b>Next:</b> open a Zillow search — the page with the map and the list of homes. A button appears in the corner, and every search page you open adds its listings.</p>
+    <p>Press <b>Export collected</b> for an instant CSV, or <b>Export all results</b> to walk the whole search. Each search gets its own file, and nothing leaves your browser.</p>
+  </div>
+
+  <footer>
+    <a href="https://pinwisp.com/zillow-scraper/privacy/">Privacy</a>
+    <a href="https://github.com/alxrum/zillow-scraper-pages/issues">Report a problem</a>
+  </footer>
+</div>
+</body>
+</html>

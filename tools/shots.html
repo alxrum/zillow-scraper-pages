@@ -1,0 +1,129 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+/* Illustrations of the welcome steps: a clean Chrome window (default light theme, one New Tab, no other extensions or
+   bookmarks), the target ringed, a numbered badge and a red arrow to it. The badge and arrow are placed by the script
+   below from the target's position. Rendered to welcome/*.png by tools/render-shots.js. Methodology: module 3, step 4. */
+* { box-sizing: border-box; margin: 0; }
+body { background: transparent; font: 13px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; color: #1f1f1f; }
+.card { width: 640px; padding: 20px; background: #e9e6e1; border-radius: 16px; position: relative; }
+.win { background: #fff; border-radius: 10px; box-shadow: 0 12px 32px rgba(0,0,0,.18), 0 2px 6px rgba(0,0,0,.1); position: relative; overflow: hidden; }
+svg.i { width: 18px; height: 18px; fill: none; stroke: #474747; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* tab strip */
+.strip { height: 38px; background: #dfe3e7; display: flex; align-items: flex-end; padding: 0 10px; gap: 6px; }
+.lights { display: flex; gap: 7px; align-self: center; margin-right: 12px; }
+.lights i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+.tab { width: 200px; height: 31px; background: #fff; border-radius: 9px 9px 0 0; display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 12px; }
+.tab .t { flex: 1; }
+.plus { align-self: center; width: 26px; height: 26px; display: grid; place-items: center; }
+/* toolbar */
+.bar { height: 42px; display: flex; align-items: center; gap: 4px; padding: 0 8px; border-bottom: 1px solid #e3e3e3; }
+.btn { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.btn[hidden] { display: none; }
+.omni { flex: 1; height: 32px; border-radius: 16px; background: #f1f3f4; display: flex; align-items: center; gap: 10px; padding: 0 12px; color: #5f6368; margin: 0 6px; }
+.avatar { width: 22px; height: 22px; border-radius: 50%; background: #c7d0d9; display: grid; place-items: center; }
+.ext { width: 20px; height: 20px; }
+.ring { box-shadow: 0 0 0 3px #e5322d; background: #fff; }
+/* page */
+.page { display: grid; place-items: center; align-content: center; gap: 16px; }
+.logo { font: 600 40px/1 "Product Sans", -apple-system, Arial, sans-serif; letter-spacing: -1.5px; }
+.logo b:nth-child(1), .logo b:nth-child(4) { color: #4285f4; } .logo b:nth-child(2), .logo b:nth-child(6) { color: #ea4335; }
+.logo b:nth-child(3) { color: #fbbc05; } .logo b:nth-child(5) { color: #34a853; }
+.search { width: 330px; height: 36px; border: 1px solid #dadce0; border-radius: 18px; display: flex; align-items: center; padding: 0 14px; color: #70757a; gap: 10px; }
+/* extensions menu */
+.menu { position: absolute; top: 76px; right: 40px; width: 290px; background: #fff; border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,.2), 0 0 0 1px rgba(0,0,0,.05); padding: 8px 0; z-index: 1; }
+.menu .head { display: flex; align-items: center; padding: 6px 16px 10px; font-size: 14px; font-weight: 600; }
+.menu .head span { flex: 1; }
+.menu .sub { padding: 2px 16px 6px; font-size: 11px; color: #5f6368; }
+.item { display: flex; align-items: center; gap: 12px; padding: 6px 10px 6px 16px; font-size: 13px; }
+.item .name { flex: 1; }
+.pin { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; }
+.menu .manage { border-top: 1px solid #e3e3e3; margin-top: 6px; padding: 10px 16px 4px; display: flex; gap: 12px; align-items: center; }
+/* annotations */
+.badge { position: absolute; width: 34px; height: 34px; border-radius: 50%; background: #e5322d; color: #fff; font-weight: 700; font-size: 18px; display: grid; place-items: center; box-shadow: 0 0 0 3px #fff, 0 2px 8px rgba(0,0,0,.25); z-index: 4; }
+svg.arrows { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; overflow: visible; }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="logo" viewBox="0 0 24 24"><rect width="24" height="24" rx="6.5" fill="#e8a33b"/><path d="M4.8 11.2 12 5.4l7.2 5.8" fill="none" stroke="#2b2723" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10.3v6.4m-2.7-2.6L12 16.8l2.7-2.7" fill="none" stroke="#2b2723" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.6 19.2h10.8" fill="none" stroke="#2b2723" stroke-width="2.1" stroke-linecap="round"/></symbol>
+  <symbol id="g" viewBox="0 0 24 24"><path fill="#4285f4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2-1.9 3.2-4.7 3.2-8.2z"/><path fill="#34a853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23z"/><path fill="#fbbc05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9z"/><path fill="#ea4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4z"/></symbol>
+  <symbol id="puzzle" viewBox="0 0 24 24"><path fill="#474747" d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path fill="#474747" d="M16 9V4h1a1 1 0 0 0 0-2H7a1 1 0 0 0 0 2h1v5a3 3 0 0 1-3 3v2h6v7l1 1 1-1v-7h6v-2a3 3 0 0 1-3-3z"/></symbol>
+  <symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></symbol>
+  <symbol id="fwd" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="reload" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></symbol>
+  <symbol id="kebab" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6" fill="#474747" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="#474747" stroke="none"/><circle cx="12" cy="19" r="1.6" fill="#474747" stroke="none"/></symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="9" r="4" fill="#fff" stroke="none"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0z" fill="#fff" stroke="none"/></symbol>
+  <symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M4.9 19.1 7 17m10-10 2.1-2.1"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></symbol>
+</svg>
+
+<template id="chrome">
+  <div class="strip">
+    <div class="lights"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></div>
+    <div class="tab"><svg class="ext" style="width:15px;height:15px"><use href="#g"/></svg><span class="t">New Tab</span><svg class="i" style="width:13px;height:13px"><use href="#close"/></svg></div>
+    <div class="plus"><svg class="i"><use href="#plus"/></svg></div>
+  </div>
+  <div class="bar">
+    <div class="btn"><svg class="i"><use href="#back"/></svg></div>
+    <div class="btn"><svg class="i" style="stroke:#b0b0b0"><use href="#fwd"/></svg></div>
+    <div class="btn"><svg class="i"><use href="#reload"/></svg></div>
+    <div class="omni"><svg class="ext" style="width:16px;height:16px"><use href="#g"/></svg>Search Google or type a URL</div>
+    <div class="btn slot-zs" hidden><svg class="ext"><use href="#logo"/></svg></div>
+    <div class="btn slot-puzzle"><svg class="ext"><use href="#puzzle"/></svg></div>
+    <div class="btn"><span class="avatar"><svg style="width:16px;height:16px"><use href="#person"/></svg></span></div>
+    <div class="btn"><svg class="i"><use href="#kebab"/></svg></div>
+  </div>
+  <div class="page">
+    <div class="logo"><b>G</b><b>o</b><b>o</b><b>g</b><b>l</b><b>e</b></div>
+    <div class="search"><svg class="i" style="width:16px;height:16px;stroke:#9aa0a6"><use href="#search"/></svg>Search Google or type a URL</div>
+  </div>
+</template>
+
+<!-- steps 1 + 2: the extensions menu is open under the ringed puzzle; the pin of Zillow Scraper is ringed -->
+<div class="card" id="step-1"><div class="win" data-page="225">
+  <div class="menu">
+    <div class="head"><span>Extensions</span><svg class="i" style="width:16px;height:16px"><use href="#close"/></svg></div>
+    <div class="sub">No access needed</div>
+    <div class="item"><svg class="ext"><use href="#logo"/></svg><span class="name">Zillow Scraper</span><span class="pin" id="t2"><svg class="ext" style="width:18px;height:18px"><use href="#pin"/></svg></span><svg class="i" style="width:16px;height:16px"><use href="#kebab"/></svg></div>
+    <div class="manage"><svg class="i" style="width:16px;height:16px"><use href="#gear"/></svg>Manage extensions</div>
+  </div>
+</div></div>
+
+<!-- step 3: Zillow Scraper pinned to the toolbar and ringed -->
+<div class="card" id="step-2"><div class="win" data-page="150" data-pinned="1"></div></div>
+
+<script>
+const tpl = document.getElementById('chrome');
+for (const win of document.querySelectorAll('.win')) {
+  const menu = win.querySelector('.menu');
+  win.prepend(tpl.content.cloneNode(true));
+  win.querySelector('.page').style.height = win.dataset.page + 'px';
+  if (win.dataset.pinned) win.querySelector('.slot-zs').hidden = false;
+  if (menu) win.append(menu);
+}
+// numbered badge at an offset from the target's centre, and a curved arrow from the badge to the ringed target
+function annotate(card, target, n, dx, dy, bend = 0.25) {
+  target.classList.add('ring');
+  const c = card.getBoundingClientRect(), t = target.getBoundingClientRect();
+  const tx = t.left - c.left + t.width / 2, ty = t.top - c.top + t.height / 2, r = t.width / 2;
+  const bx = tx + dx, by = ty + dy;
+  const badge = Object.assign(document.createElement('span'), { className: 'badge', textContent: n });
+  badge.style.left = bx - 17 + 'px'; badge.style.top = by - 17 + 'px';
+  card.append(badge);
+  const len = Math.hypot(dx, dy), ux = -dx / len, uy = -dy / len;
+  const sx = bx + ux * 24, sy = by + uy * 24, ex = tx - ux * (r + 8), ey = ty - uy * (r + 8);
+  const mx = (sx + ex) / 2 - uy * len * bend, my = (sy + ey) / 2 + ux * len * bend;
+  const ang = Math.atan2(ey - my, ex - mx), h = 12;
+  const head = (a) => `${ex - h * Math.cos(ang + a)},${ey - h * Math.sin(ang + a)}`;
+  let svg = card.querySelector('svg.arrows');
+  if (!svg) { svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); svg.setAttribute('class', 'arrows'); card.append(svg); }
+  svg.insertAdjacentHTML('beforeend', `<path d="M${sx},${sy} Q${mx},${my} ${ex},${ey}" fill="none" stroke="#e5322d" stroke-width="5" stroke-linecap="round"/>` +
+    `<path d="M${head(0.5)} L${ex},${ey} L${head(-0.5)}" fill="none" stroke="#e5322d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`);
+}
+const s1 = document.getElementById('step-1'), s2 = document.getElementById('step-2');
+annotate(s1, s1.querySelector('.slot-puzzle'), 1, -100, 0, 0.12);
+annotate(s1, document.getElementById('t2'), 2, -70, 105, 0.2);
+annotate(s2, s2.querySelector('.slot-zs'), 3, -75, 80, 0.2);
+</script>
+</body></html>
